@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1905</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="heap.js"></script>
+
+    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" href="popup.css">
+
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1">
+</head>
+<body>
+    <div id='map'></div>
+    <script src="map.js"></script>
+
+    <div id="info">
+        To create a path:<br>
+        1) Select and add objects from the list<br><br>
+
+        <label for="shelters">Shelters🏡</label>
+        <select class="select" id="shelters">
+            <option value="" selected>Select</option>
+        </select>
+        <button id="sheltersBtn" title="Click to add this object to the path">Add</button>
+
+        <br>
+        <label for="forests">Forests🌳</label>
+        <select class="select" id="forests">
+            <option value="" selected>Select</option>
+        </select>
+        <button id="forestsBtn" title="Click to add this object to the path">Add</button>
+
+        <br>
+        <label for="castles">Castles🏰</label>
+        <select class="select" id="castles">
+            <option value="" selected>Select</option>
+        </select>
+        <button id="castlesBtn" title="Click to add this object to the path">Add</button>
+
+        <script src="list.js"></script>
+
+        <br><br>
+        <div>
+            <div><strong>Path:</strong></div>
+            <div id="path"> </div>
+        </div>
+        <button id="pathBtn">Create a path</button>
+        <button id="clearBtn">Clear</button>
+        <br><br>
+
+
+        2) Choose one of the recommended paths
+        <div>
+            <button onclick="viewEasy()" id="easyBtn" title="Click to view easy paths">Easy</button>
+            <button onclick="viewMedium()" id="mediumBtn" title="Click to view medium paths">Medium</button>
+            <button onclick="viewHard()" id="hardBtn" title="Click to view hard paths">Hard</button>
+        </div>
+
+        <div id="pathDetails">
+            <div class="recommended" id="path1" title="Click to view path"></div>
+            <div class="recommended" id="path2" title="Click to view path"></div>
+            <div class="recommended" id="path3" title="Click to view path"></div>
+            <div class="recommended" id="path4" title="Click to view path"></div>
+            <div class="recommended" id="path5" title="Click to view path"></div>
+            <div class="recommended" id="path6" title="Click to view path"></div>
+            <div class="recommended" id="path7" title="Click to view path"></div>
+            <div class="recommended" id="path8" title="Click to view path"></div>
+            <div class="recommended" id="path9" title="Click to view path"></div>
+        </div>
+    </div>
+
+    <script src="highlight.js"></script>
+    <script src="recommended.js"></script>
+    <script src="path.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#map{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#info{
+    position: relative;
+    padding: 15px;
+    margin: 0;
+    top: 10px;
+    left: 10px;
+    width: 335px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: azure;
+    text-align: left;
+    font-family: Consolas, monospace;
+    font-size: 20px;
+    user-select: none;
+}
+
+.marker{
+    display: block;
+    border: 1px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.marker:hover{
+    border: 3px solid red;
+}
+
+.highlight{
+    border: 3px solid red;
+}
+
+#easyBtn, #mediumBtn, #hardBtn{
+
+}
+
+.recommended{
+    display: none;
+    margin-top: 10px;
+    width: auto;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.recommended:hover{
+    border: 2px solid red;
+    cursor: pointer;
+}
+
+.disp{
+    display: block;
+}
+
