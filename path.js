@@ -29,7 +29,7 @@ function dijkstra(graph, start, end) {
         const current = heap.pop();
         visited.add(current);
 
-        // calculate the Euclidean distance between current node and its neighbors
+        // check distance
         for (const neighbor in graph[current]) {
             if (distances[neighbor] > distances[current] + graph[current][neighbor]) {
                 distances[neighbor] = distances[current] + graph[current][neighbor];

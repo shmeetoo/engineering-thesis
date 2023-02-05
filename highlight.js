@@ -6,7 +6,7 @@ const pathBtn = document.getElementById("pathBtn");
 let pointsTmp = [];
 let points = [];
 let min0, min1, max0, max1;
-
+let drawn = false;
 
 function highlightElement(objectType) {
     let select = document.getElementById(objectType);
@@ -83,24 +83,27 @@ function minMax(path){
 }
 
 function drawManualPath(graph){
-    let drawn = false;
 
     pathBtn.addEventListener('click', ()=>{
         let path = findPath(points, graph);
         let details = document.createElement("div");
-        details.innerHTML = `<strong>Distance:</strong> ${timeDist(path[1])[0]} km<br><strong>Time:</strong> ${timeDist(path[1])[1]}:${timeDist(path[1])[2]} h`;
+        details.innerHTML = `<b>Distance:</b> ${timeDist(path[1])[0]} km<br><b>Time:</b> ${timeDist(path[1])[1]}:${timeDist(path[1])[2]} h`;
 
         if(!drawn){
             drawPath(path[0]);
-            divPath.appendChild(details);
             map.fitBounds([[minMax(path[0])[0]-2,minMax(path[0])[1]-2],[minMax(path[0])[2]+2,minMax(path[0])[3]+2]]);
             drawn = true;
+            pathBtn.textContent = "Update path";
+
+            if(path[0] || path[0].length > 1)
+                divPath.appendChild(details);
         } else{
             map.removeLayer("shortest-path");
             map.removeSource("shortest-path");
             map.fitBounds(baseBounds);
             divPath.removeChild(divPath.lastChild);
             drawn = false;
+            pathBtn.textContent = "Create path";
         }
     })
 }
@@ -114,7 +117,36 @@ document.getElementById("clearBtn").addEventListener("click", ()=>{
         pointsTmp = [];
     }
 
+    if(map.getLayer("shortest-path"))
+        map.removeLayer("shortest-path");
+    if(map.getSource("shortest-path"))
+        map.removeSource("shortest-path");
+
+    map.fitBounds(baseBounds);
+    drawn = false;
+
+    pathIds.forEach((id) =>{
+        const div = document.getElementById(id);
+
+        if(div.childNodes.length > 5)
+            div.removeChild(div.lastChild);
+    });
+
+
     [].forEach.call(markers, function(el){
         el.classList.remove("highlight");
-    })
+    });
 })
+
+const div = document.getElementById("info2");
+
+[].forEach.call(markers, function(m){
+    m.addEventListener('click', ()=>{
+        div.innerHTML = `<b>${m.id}</b>`;
+
+        if(div.style.display === "none")
+            div.style.display = "block";
+        else
+            div.style.display = "none";
+    })
+});

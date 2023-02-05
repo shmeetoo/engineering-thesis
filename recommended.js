@@ -14,8 +14,15 @@ const pathSets = [
     {
         paths: [paths[0], paths[1], paths[2]],
         view: function() {
+            paths.forEach(path =>{
+                if(path.id !== "path1" && path.id !== "path2" && path.id !== "path3"){
+                    if(document.getElementById(path.id).classList.contains("disp"))
+                        document.getElementById(path.id).classList.remove("disp");
+                }
+            })
+
             this.paths.forEach(path => {
-                document.getElementById(path.id).innerHTML = `<strong>Start: </strong> ${path.start}<br><strong>End: </strong>${path.end}`;
+                document.getElementById(path.id).innerHTML = `<b>Start: </b> ${path.start}<br><b>End: </b>${path.end}`;
                 document.getElementById(path.id).classList.toggle("disp");
             });
         }
@@ -23,8 +30,15 @@ const pathSets = [
     {
         paths: [paths[3], paths[4], paths[5]],
         view: function() {
+            paths.forEach(path =>{
+                if(path.id !== "path4" && path.id !== "path5" && path.id !== "path6"){
+                    if(document.getElementById(path.id).classList.contains("disp"))
+                        document.getElementById(path.id).classList.remove("disp");
+                }
+            })
+
             this.paths.forEach(path => {
-                document.getElementById(path.id).innerHTML = `<strong>Start: </strong> ${path.start}<br><strong>End: </strong>${path.end}`;
+                document.getElementById(path.id).innerHTML = `<b>Start: </b> ${path.start}<br><b>End: </b>${path.end}`;
                 document.getElementById(path.id).classList.toggle("disp");
             });
         }
@@ -32,8 +46,15 @@ const pathSets = [
     {
         paths: [paths[6], paths[7], paths[8]],
         view: function() {
+            paths.forEach(path =>{
+                if(path.id !== "path7" && path.id !== "path8" && path.id !== "path9"){
+                    if(document.getElementById(path.id).classList.contains("disp"))
+                        document.getElementById(path.id).classList.remove("disp");
+                }
+            })
+
             this.paths.forEach(path => {
-                document.getElementById(path.id).innerHTML = `<strong>Start: </strong> ${path.start}<br><strong>End: </strong>${path.end}`;
+                document.getElementById(path.id).innerHTML = `<b>Start: </b> ${path.start}<br><b>End: </b>${path.end}`;
                 document.getElementById(path.id).classList.toggle("disp");
             });
         }
@@ -77,6 +98,28 @@ const pathData = {
     path9: p9
 };
 
+const n1 = ["Aldobereherdi Castle","Aldobereherdi Forest","Cavimita Shelter","Virmalahka Forest"];
+const n2 = ["Combleux Forest","Douche Shelter","Douche Forest","Douche Castle", "Ouletvillant Forest"];
+const n3 = ["Vegodets Shelter","Vegodets Forest","Mosch Forest","Holmny Forest","Holmny Castle","Horovy Forest"];
+const n4 = ["Horvaoeira Forest","Seiranharin Shelter","Cachoga Shelter","Ganov Forest","Vegodets Shelter","Chech Forest","Kutesh Forest","Mopolchesk Shelter","Rybchkin Castle"];
+const n5 = ["Aldobereherdi Castle","Aldobereherdi Forest","Tiszal Forest","Cavimita Shelter","Cavimita Castle","Noduri Forest","Heart Forest","Vinnse Forest"];
+const n6 = ["Chillepieds Forest","Chillepieds Shelter","Souvilles Forest","Thoulontigran Forest","Vatilliers Shelter","Malethiver Forest","Beres Forest","Migran Forest"];
+const n7 = ["Delyitin Forest","Skagolyn Forest","Obololo Shelter","Obololo Forest","Korninetsk Forest","Verdepan Shelter","Verdepan Castle","Tridychere Shelter","Viohlai Forest","Tarida Shelter","Tabrad Forest","Steilern Shelter","Steilern Castle","Winheimbach Forest"];
+const n8 = ["Vogtster Castle","Vogtster Forest","Gernsbach Shelter","Kurli Forest","Desun Forest","Aber Shelter","Gwydebomaber Forest","Nodubinver Shelter","Llan Forest","Afesp Castle"];
+const n9 = ["Migran Forest","Laberow Shelter","Aberporthney Forest","Indyrdaug Forest","Aberfha Shelter","Nyeklos Forest","Indyrhonddu Forest","Inverskuno Shelter","Vinnse Forest"];
+
+const namesData = {
+    path1: n1,
+    path2: n2,
+    path3: n3,
+    path4: n4,
+    path5: n5,
+    path6: n6,
+    path7: n7,
+    path8: n8,
+    path9: n9
+}
+
 function timeDist(path){
     const speed = 3;
     let dist = (path/2).toFixed(2);
@@ -96,24 +139,31 @@ function timeDist(path){
 function drawPaths(graph){
     pathIds.forEach((id) => {
         const div = document.getElementById(id);
-        let drawn = false;
 
         div.addEventListener("click", () => {
             let path = findPath(pathData[id], graph);
             let details = document.createElement("div");
-            details.innerHTML = `<strong>Distance:</strong> ${timeDist(path[1])[0]} km<br><strong>Time:</strong> ${timeDist(path[1])[1]}:${timeDist(path[1])[2]} h`;
+            details.innerHTML = `<b>Distance:</b> ${timeDist(path[1])[0]} km<br><b>Time:</b> ${timeDist(path[1])[1]}:${timeDist(path[1])[2]} h`;
 
-            if (!drawn) {
+            if(!drawn) {
                 drawPath(path[0]);
                 div.appendChild(details);
                 map.fitBounds([[minMax(path[0])[0]-1,minMax(path[0])[1]-1],[minMax(path[0])[2]+1,minMax(path[0])[3]+1]]);
                 drawn = true;
+
+                [].forEach.call(namesData[id], function(el){
+                    document.getElementById(el).classList.add("highlight");
+                });
             } else {
                 map.removeLayer("shortest-path");
                 map.removeSource("shortest-path");
                 map.fitBounds(baseBounds);
                 div.removeChild(div.lastChild);
                 drawn = false;
+
+                [].forEach.call(markers, function(el){
+                    el.classList.remove("highlight");
+                });
             }
         });
     });

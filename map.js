@@ -12,16 +12,9 @@ const map = new mapboxgl.Map({
 
 });
 
-// map.addControl(new mapboxgl.AttributionControl({
-//     customAttribution: 'Map design by me :)'
-// }));
-
-map.addControl(new mapboxgl.NavigationControl());
-// const scale = new mapboxgl.ScaleControl({
-//     maxWidth: 80,
-//     unit: 'metric'
-// });
-// map.addControl(scale, 'bottom-right');
+map.dragRotate.disable();
+map.touchZoomRotate.disableRotation();
+map.keyboard.disableRotation();
 
 map.on('load', () => {
     map.addSource('routes-data', {
@@ -269,8 +262,7 @@ for(const marker of markers_data.features){
     }
 
     el.addEventListener('click', () => {
-        window.alert(marker.properties.name);
-        window.alert(marker.geometry.coordinates);
+        window.alert(marker.properties.name)
         el.classList.toggle("highlight");
     });
 
