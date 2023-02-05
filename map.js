@@ -262,7 +262,6 @@ for(const marker of markers_data.features){
     }
 
     el.addEventListener('click', () => {
-        window.alert(marker.properties.name)
         el.classList.toggle("highlight");
     });
 
