@@ -15,6 +15,7 @@ const map = new mapboxgl.Map({
 map.dragRotate.disable();
 map.touchZoomRotate.disableRotation();
 map.keyboard.disableRotation();
+map.doubleClickZoom.disable();
 
 map.on('load', () => {
     map.addSource('routes-data', {
@@ -242,6 +243,13 @@ const markers_data =
         ]
     }
 
+const markersData = [];
+markers_data.features.forEach(feature =>{
+    markersData.push({
+        [feature.properties.name]: feature.geometry.coordinates
+    });
+});
+
 
 for(const marker of markers_data.features){
     const el = document.createElement('div');
@@ -260,10 +268,6 @@ for(const marker of markers_data.features){
     } else {
         el.innerText = marker.properties.icon;
     }
-
-    el.addEventListener('click', () => {
-        el.classList.toggle("highlight");
-    });
 
     new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)

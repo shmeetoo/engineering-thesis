@@ -18,6 +18,7 @@ body{
     left: 10px;
     width: 335px;
     height: auto;
+    max-height: 850px;
     border: 2px solid black;
     border-radius: 10px;
     background-color: azure;
@@ -25,6 +26,7 @@ body{
     font-family: Consolas, monospace;
     font-size: 20px;
     user-select: none;
+    overflow-y: auto;
 }
 
 .marker{
@@ -41,10 +43,6 @@ body{
 
 .highlight{
     border: 3px solid red;
-}
-
-#easyBtn, #mediumBtn, #hardBtn{
-
 }
 
 .recommended{
@@ -65,12 +63,12 @@ body{
     display: block;
 }
 
-.info2{
+#info2{
     position: absolute;
     padding: 10px;
     margin: 0;
     top: 10px;
-    right: 10px;
+    left: 390px;
     width: 250px;
     height: auto;
     border: 2px solid black;

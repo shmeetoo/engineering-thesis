@@ -16,36 +16,16 @@
 
     <div id="info">
         <b>To create a path:</b><br>
-        • Select and add objects from the list<br><br>
+        • Select and add objects from the list<br>
 
-        <label for="shelters">Shelters🏡</label>
-        <select class="select" id="shelters">
-            <option value="" selected>Select</option>
-        </select>
-        <button id="sheltersBtn" title="Click to add this object to the path">Add</button>
+        <div id="list" style="padding-top: 10px"></div>
 
-        <br>
-        <label for="forests">Forests🌳</label>
-        <select class="select" id="forests">
-            <option value="" selected>Select</option>
-        </select>
-        <button id="forestsBtn" title="Click to add this object to the path">Add</button>
-
-        <br>
-        <label for="castles">Castles🏰</label>
-        <select class="select" id="castles">
-            <option value="" selected>Select</option>
-        </select>
-        <button id="castlesBtn" title="Click to add this object to the path">Add</button>
-
-
-        <br><br>
-        <div>
-            <div><strong>Path:</strong></div>
+        <div style="padding-top: 10px">
+            <div><b>Path:</b></div>
             <div id="path"> </div>
+            <div id="details" style="display: none"></div>
         </div>
-        <button id="pathBtn">Create path</button>
-        <button id="clearBtn">Clear</button>
+        <button id="clearBtn" style="width: 60px">Clear</button>
         <br><br>
 
 
@@ -69,12 +49,12 @@
         </div>
     </div>
 
-    <div class="info2" id="info2" style="display: none"></div>
+    <div id="info2" style="display: none"></div>
 
     <script src="map.js"></script>
-    <script src="list.js"></script>
-    <script src="recommended.js"></script>
-    <script src="highlight.js"></script>
     <script src="path.js"></script>
+    <script src="recommended.js"></script>
+    <script src="side-panel.js"></script>
+
 </body>
 </html>

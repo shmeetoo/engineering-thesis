@@ -126,9 +126,14 @@ function timeDist(path){
     let hours = Math.floor(dist/speed);
     let minutes = Math.floor(dist/speed*60);
 
-    while(minutes > 60){
-        minutes -= 60;
+    if(minutes > 60){
+        while(minutes > 60){
+            minutes -= 60;
 
+            if(minutes < 10)
+                minutes = '0' + minutes;
+        }
+    } else {
         if(minutes < 10)
             minutes = '0' + minutes;
     }
@@ -136,18 +141,33 @@ function timeDist(path){
     return [dist, hours, minutes];
 }
 
+let drawn = false;
+
 function drawPaths(graph){
     pathIds.forEach((id) => {
         const div = document.getElementById(id);
 
         div.addEventListener("click", () => {
             let path = findPath(pathData[id], graph);
-            let details = document.createElement("div");
-            details.innerHTML = `<b>Distance:</b> ${timeDist(path[1])[0]} km<br><b>Time:</b> ${timeDist(path[1])[1]}:${timeDist(path[1])[2]} h`;
+            let detailsRec = document.createElement("div");
+            detailsRec.innerHTML = `<b>Distance:</b> ${timeDist(path[1])[0]} km<br><b>Time:</b> ${timeDist(path[1])[1]}:${timeDist(path[1])[2]} h`;
 
             if(!drawn) {
+                if(map.getLayer("shortest-path"))
+                    map.removeLayer("shortest-path");
+                if(map.getSource("shortest-path")){
+                    map.removeSource("shortest-path");
+
+                    Array.from(checkboxList.querySelectorAll("input[type=checkbox]")).forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+                    updateMarkerIndex();
+
+                    details.style.display = "none";
+                }
+
                 drawPath(path[0]);
-                div.appendChild(details);
+                div.appendChild(detailsRec);
                 map.fitBounds([[minMax(path[0])[0]-1,minMax(path[0])[1]-1],[minMax(path[0])[2]+1,minMax(path[0])[3]+1]]);
                 drawn = true;
 

@@ -144,12 +144,13 @@ function createGraph(geojson) {
     return graph;
 }
 
+let graph;
+
 fetch('routes8.geojson')
     .then(response => response.json())
     .then(geojson => {
-        const graph = createGraph(geojson);
+        graph = createGraph(geojson);
 
-        drawManualPath(graph);
         drawPaths(graph);
 
     })
