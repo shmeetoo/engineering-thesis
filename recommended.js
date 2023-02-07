@@ -172,7 +172,6 @@ function drawPaths(graph){
             drawPath(path[0]);
             div.appendChild(detailsRec);
             map.fitBounds([[minMax(path[0])[0] - 1, minMax(path[0])[1] - 1], [minMax(path[0])[2] + 1, minMax(path[0])[3] + 1]]);
-            drawn = true;
 
             [].forEach.call(namesData[id], function (el) {
                 document.getElementById(el).classList.add("highlight");
