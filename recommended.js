@@ -141,50 +141,58 @@ function timeDist(path){
     return [dist, hours, minutes];
 }
 
-let drawn = false;
 
 function drawPaths(graph){
+
     pathIds.forEach((id) => {
         const div = document.getElementById(id);
 
-        div.addEventListener("click", () => {
+        div.addEventListener("mouseenter", () => {
             let path = findPath(pathData[id], graph);
             let detailsRec = document.createElement("div");
             detailsRec.innerHTML = `<b>Distance:</b> ${timeDist(path[1])[0]} km<br><b>Time:</b> ${timeDist(path[1])[1]}:${timeDist(path[1])[2]} h`;
 
-            if(!drawn) {
-                if(map.getLayer("shortest-path"))
-                    map.removeLayer("shortest-path");
-                if(map.getSource("shortest-path")){
-                    map.removeSource("shortest-path");
-
-                    Array.from(checkboxList.querySelectorAll("input[type=checkbox]")).forEach(checkbox => {
-                        checkbox.checked = false;
-                    });
-                    updateMarkerIndex();
-
-                    details.style.display = "none";
-                }
-
-                drawPath(path[0]);
-                div.appendChild(detailsRec);
-                map.fitBounds([[minMax(path[0])[0]-1,minMax(path[0])[1]-1],[minMax(path[0])[2]+1,minMax(path[0])[3]+1]]);
-                drawn = true;
-
-                [].forEach.call(namesData[id], function(el){
-                    document.getElementById(el).classList.add("highlight");
-                });
-            } else {
+            if (map.getLayer("shortest-path"))
                 map.removeLayer("shortest-path");
-                map.removeSource("shortest-path");
-                map.fitBounds(baseBounds);
-                div.removeChild(div.lastChild);
-                drawn = false;
 
-                [].forEach.call(markers, function(el){
-                    el.classList.remove("highlight");
+            if (map.getSource("shortest-path")) {
+                map.removeSource("shortest-path");
+
+                Array.from(checkboxList.querySelectorAll("input[type=checkbox]")).forEach(checkbox => {
+                    checkbox.checked = false;
                 });
+                updateMarkerIndex();
+
             }
+
+            [].forEach.call(markers, function (el) {
+                el.classList.remove("highlight");
+            });
+
+            drawPath(path[0]);
+            div.appendChild(detailsRec);
+            map.fitBounds([[minMax(path[0])[0] - 1, minMax(path[0])[1] - 1], [minMax(path[0])[2] + 1, minMax(path[0])[3] + 1]]);
+            drawn = true;
+
+            [].forEach.call(namesData[id], function (el) {
+                document.getElementById(el).classList.add("highlight");
+            });
+
+            details.style.display = "none";
+        });
+
+        div.addEventListener('mouseleave', ()=>{
+            map.removeLayer("shortest-path");
+            map.removeSource("shortest-path");
+            map.fitBounds(baseBounds);
+
+            if(div.childNodes.length > 5)
+                div.removeChild(div.lastChild);
+
+
+            [].forEach.call(markers, function(el){
+                el.classList.remove("highlight");
+            });
         });
     });
 
