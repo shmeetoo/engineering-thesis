@@ -250,6 +250,12 @@ markers_data.features.forEach(feature =>{
     });
 });
 
+markersData.sort((a,b) =>{
+    let nameA = Object.keys(a)[0].toUpperCase();
+    let nameB = Object.keys(b)[0].toUpperCase();
+
+    return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+});
 
 for(const marker of markers_data.features){
     const el = document.createElement('div');
