@@ -3,6 +3,7 @@ const pathDiv = document.getElementById("path");
 let details = document.getElementById("details");
 let markerIndex = 1;
 let points = [];
+let pointsNames = [];
 
 const checkboxList = document.createElement("div");
 checkboxList.style.height = "295px";
@@ -30,6 +31,9 @@ markersData.forEach(marker => {
             if(!points.includes(markerCoords))
                 points.push(markerCoords);
 
+            if(!pointsNames.includes(markerName))
+                pointsNames.push(markerName);
+
             if(points.length > 1){
                 drawManualPath();
                 details.style.display = "block";
@@ -38,10 +42,14 @@ markersData.forEach(marker => {
         } else {
             pathDiv.innerHTML = pathDiv.innerHTML.replace(`${markerIndex}. ${markerName}<br>`, "");
             document.getElementById(markerName).classList.remove("highlight");
-            updateMarkerIndex();
 
             let index = points.indexOf(markerCoords);
             points.splice(index, 1);
+
+            let index2 = pointsNames.indexOf(markerName);
+            pointsNames.splice(index2, 1);
+
+            updateMarkerIndex();
 
             if(points.length > 1){
                 drawManualPath();
@@ -67,12 +75,10 @@ markersData.forEach(marker => {
 
 function updateMarkerIndex() {
     markerIndex = 1;
-    const checkedMarkers = Array.from(checkboxList.querySelectorAll("input[type=checkbox]:checked"))
-        .map(checkbox => checkbox.value);
 
     pathDiv.innerHTML = "";
-    checkedMarkers.forEach(markerName => {
-        pathDiv.innerHTML += `${markerIndex}. ${markerName}<br>`;
+    pointsNames.forEach(name => {
+        pathDiv.innerHTML += `${markerIndex}. ${name}<br>`;
         markerIndex++;
     });
 }
@@ -122,6 +128,7 @@ document.getElementById("clearBtn").addEventListener("click", ()=>{
     while(pathDiv.firstChild){
         pathDiv.removeChild(pathDiv.lastChild);
         points = [];
+        pointsNames = [];
     }
 
     if(map.getLayer("shortest-path"))
@@ -130,7 +137,6 @@ document.getElementById("clearBtn").addEventListener("click", ()=>{
         map.removeSource("shortest-path");
 
     map.fitBounds(baseBounds);
-    drawn = false;
 
     pathIds.forEach((id) =>{
         const div = document.getElementById(id);
