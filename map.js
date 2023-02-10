@@ -35,7 +35,7 @@ map.on('load', () => {
     });
 });
 
-const markers_data =
+const markersFile =
     {
         "type": "FeatureCollection",
         "name": "markers4",
@@ -243,7 +243,7 @@ const markers_data =
     }
 
 const markersData = [];
-markers_data.features.forEach(feature =>{
+markersFile.features.forEach(feature =>{
     markersData.push({
         [feature.properties.name]: feature.geometry.coordinates
     });
@@ -257,7 +257,7 @@ markersData.sort((a,b) =>{
 });
 
 
-for(const marker of markers_data.features){
+for(const marker of markersFile.features){
     const el = document.createElement('div');
     el.className = 'marker';
     el.id = marker.properties.name;
