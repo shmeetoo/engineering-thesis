@@ -76,7 +76,7 @@ function viewHard() {
 const p1 = [[-2.561,41.1291],[-4.1424,41.1369],[-3.821,43.4948],[-2.2745,42.3304]];
 const p2 = [[-11.0481,39.9371],[-12.108478919525488,40.201267722026294],[-12.2134,39.6029],[-12.7704,40.1455],[-13.0091,41.0709]];
 const p3 = [[8.5773,38.2027],[8.261,38.3369],[8.9419,39.1233],[8.5005,39.4282],[8.0334,39.4825],[7.505,38.5835]];
-const p4 = [[11.4008,43.2434],[12.575556548330358,42.18734189712481],[9.9862,39.3094],[7.3607,37.4311],[7.069,38.6771],[7.3467,39.8495],[8.1284,42.5019]];
+const p4 = [[11.4008,43.2434],[12.575556548330358,42.18734189712481],[11.675058032582337,39.929313249289827],[7.3607,37.4311],[7.069,38.6771],[7.3467,39.8495],[8.1284,42.5019]];
 const p5 = [[-2.561,41.1291],[-4.1424,41.1369],[-4.1345,42.2612],[-3.821,43.4948],[-4.4413,43.8709],[-4.8826,43.3738],[-6.1255,44.2592],[-7.1606,44.9835]];
 const p6 = [[-12.7521,38.3337],[-12.2851,38.1643],[-11.2434,38.5216],[-11.0452,37.7353],[-11.302727311315069,36.42509075473971],[-11.2733,35.4049],[-9.7058,35.6903],[-10.3007,34.0714]];
 const p7 = [[9.5732,42.1621],[9.4347,43.6592],[8.3541,44.401],[7.104,44.6578],[5.5179,44.3971],[5.121619927407833,43.65158211235702],[4.7274,42.714],[3.209585652996353,41.33310753749727],[3.2612,40.3483],[2.3056,39.5384],[1.6585,38.6592],[1.2854,36.7739],[1.7537,36.0337],[2.753,35.0495]];
@@ -101,7 +101,7 @@ const pathData = {
 const n1 = ["Aldobereherdi Castle","Aldobereherdi Forest","Cavimita Shelter","Virmalahka Forest"];
 const n2 = ["Combleux Forest","Douche Shelter","Douche Forest","Douche Castle", "Ouletvillant Forest"];
 const n3 = ["Vegodets Shelter","Vegodets Forest","Mosch Forest","Holmny Forest","Holmny Castle","Horovy Forest"];
-const n4 = ["Horvaoeira Forest","Seiranharin Shelter","Cachoga Shelter","Ganov Forest","Vegodets Shelter","Chech Forest","Kutesh Forest","Mopolchesk Shelter","Rybchkin Castle"];
+const n4 = ["Horvaoeira Forest","Seiranharin Shelter","Cachoga Shelter","Vegodets Shelter","Chech Forest","Kutesh Forest","Mopolchesk Shelter","Rybchkin Castle"];
 const n5 = ["Aldobereherdi Castle","Aldobereherdi Forest","Tiszal Forest","Cavimita Shelter","Cavimita Castle","Noduri Forest","Heart Forest","Vinnse Forest"];
 const n6 = ["Chillepieds Forest","Chillepieds Shelter","Souvilles Forest","Thoulontigran Forest","Vatilliers Shelter","Malethiver Forest","Beres Forest","Migran Forest"];
 const n7 = ["Delyitin Forest","Skagolyn Forest","Obololo Shelter","Obololo Forest","Korninetsk Forest","Verdepan Shelter","Verdepan Castle","Tridychere Shelter","Viohlai Forest","Tarida Shelter","Tabrad Forest","Steilern Shelter","Steilern Castle","Winheimbach Forest"];
