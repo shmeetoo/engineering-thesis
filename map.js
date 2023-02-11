@@ -266,14 +266,8 @@ for(const marker of markersFile.features){
     el.style.height = '20px';
     el.style.backgroundSize = '100%';
     el.style.textAlign = 'center';
+    el.innerText = marker.properties.icon;
 
-    if(marker.properties.type === 'sacred-forests'){
-        el.innerText = marker.properties.icon;
-    } else if(marker.properties.type === 'castle'){
-        el.innerText = marker.properties.icon;
-    } else {
-        el.innerText = marker.properties.icon;
-    }
 
     new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
